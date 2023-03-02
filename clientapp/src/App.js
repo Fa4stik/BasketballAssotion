@@ -1,10 +1,16 @@
-import "./App.css";
-import { MainScreen } from "./components/MainScreen";
+import { Routes, Route } from 'react-router-dom';
+import  MainScreen  from "./components/MainScreen";
+import { Layout } from "./components/Layout";
+require("./index.css");
 function App() {
   return (
-    <div className="App">
-      <MainScreen />
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+            <Route index element={ <MainScreen/>}/>
+        </Route>
+      </Routes>
+    </>
   );
 }
 

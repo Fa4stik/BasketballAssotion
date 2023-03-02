@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Calibri&display=swap");
+
+.swiper-button-prev {
+    background-image: url("./assets/svg/chevron.svg") !important;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    transform: scaleX(-1);
+    width: 53px;
+    height: 60px;
+    /* margin-right: 20px; */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.swiper-button-next {
+    background-image: url("./assets/svg/chevron.svg") !important;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    width: 53px;
+    height: 60px;
+    /* margin-left: 20px; */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+/* the new container */
+.swiper-container-new {
+    position: relative;
+    width: 100%;
+}
+
+/* fix the buttons positions */
+.swiper-navigation-prev {
+    left: 0;
+    background-image: url("./assets/svg/chevron.svg") !important;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    width: 53px;
+    height: 60px;
+}
+
+.swiper-navigation-next {
+    right: 0;
+    background-image: url("./assets/svg/chevron.svg") !important;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    width: 53px;
+    height: 60px;
+    transform: scaleX(-1);
 }
