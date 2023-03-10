@@ -6,7 +6,7 @@ const Button = (props) => {
       type="button"
       className={`text-white white bg-nba-blue text-[${props.textSize}] ${props.paddings}`}
     >
-      Visitor
+          {props.children}
     </button>
   );
 };
