@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "./Button";
 import logo from "../assets/svg/nba_logo.svg";
 import MainScreenSlider from "./MainScreenSlider";
 const MainScreen = function () {
@@ -18,18 +19,18 @@ const MainScreen = function () {
         different pages according to your role by clicking the buttons bellow.
       </h3>
       <div className="w-[801px] h-[373px] border-nba-border border-2 mt-[58px] flex items-center justify-between pl-[88px] pr-[88px]">
-        <button
-          type="button"
-          className="text-white white text-[36px] bg-nba-blue pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
+        <Button
+          textSize="36px"
+          paddings="pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
         >
           Visitor
-        </button>
-        <button
-          type="button"
-          className="text-white text-[36px] bg-nba-blue pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
+        </Button>
+        <Button
+          textSize="36px"
+          paddings="pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
         >
           Admin
-        </button>
+        </Button>
       </div>
       <MainScreenSlider />
     </>

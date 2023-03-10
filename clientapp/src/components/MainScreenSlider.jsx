@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slide from "./Slide";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
@@ -32,11 +30,6 @@ export default function MainScreenSlider() {
       <Swiper
         loop={true}
         navigation={true}
-        // navigation={{
-        //   // nextEl: ".swiper-navigation-next",
-        //   // prevEl: ".swiper-navigation-prev",
-          
-        // }}
         slidesPerView={3}
         spaceBetween={90}
         modules={[Navigation]}
