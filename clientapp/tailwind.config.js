@@ -970,6 +970,8 @@ module.exports = {
         "nba-lightgray": "#7C7C7C",
         "nba-darkgray": "#5A5A5A",
         "nba-border": "#cccccc",
+        "nba-textGray": "#00000099",
+        "nba-wheat": "#D9D9D9",
       },
       fontFamily: {
         calibri: "Calibri, sans-serif",

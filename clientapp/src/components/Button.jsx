@@ -1,12 +1,15 @@
 import React from "react";
 
 const Button = (props) => {
+  let color = props.color;
+  if (color === undefined) color = 'black';
   return (
     <button
       type="button"
-      className={`text-white white bg-nba-blue text-[${props.textSize}] ${props.paddings}`}
+      className={` bg-nba-blue text-[36px] ${props.paddings} ${props.className} text-${color}`}
+      onClick={props.onClick}
     >
-          {props.children}
+      {props.children}
     </button>
   );
 };
