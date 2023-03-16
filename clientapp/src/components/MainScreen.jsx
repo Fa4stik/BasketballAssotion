@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Button from "./Button";
 import logo from "../assets/svg/nba_logo_big.svg";
 import MainScreenSlider from "./MainScreenSlider";
-
-
 import { Link } from "react-router-dom";
 const MainScreen = function () {
 
@@ -26,13 +24,15 @@ const MainScreen = function () {
         <Link to="visitor">
           <Button
             color="white"
-            paddings="pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
+            paddings="pt-[32px] pb-[34px]"
+            className="w-[250px]"
           >
             Visitor
           </Button>
         </Link>
         <Button
           color="white"
+          className="w-[250px]"
           paddings="pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
         >
           Admin

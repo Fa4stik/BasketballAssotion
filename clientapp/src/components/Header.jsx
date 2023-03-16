@@ -12,7 +12,7 @@ const Header = (props) => {
           <p className="text-nba-textGray text-[25px]">NBA Management System</p>
         </div>
         <h2 className="text-nba-textGray text-[36px] justify-self-auto justify-self-center">
-          {document.title}
+          {props.title}
         </h2>
         <div className="justify-self-end">
           <Button
