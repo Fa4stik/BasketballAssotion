@@ -1,5 +1,5 @@
 import React, {Component, useEffect} from 'react';
-import Button from "./Button";
+import Button from "./ButtonNba";
 import {Link} from "react-router-dom";
 
 const EventAdministratorMenu = (props) => {

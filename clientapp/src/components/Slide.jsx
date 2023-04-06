@@ -2,13 +2,17 @@ export default function Slide({ image }) {
   return (
     <div
       style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        height: "200px",
-        width: "350px",
+
+        height: "100%",
+        width: "100%",
+        marginLeft: "15px",
       }}
-    ></div>
+    >
+      <img
+        style={{ height: "100%", width:'100%', objectFit: "cover" }}
+        src={image}
+        alt=""
+      />
+    </div>
   );
 }

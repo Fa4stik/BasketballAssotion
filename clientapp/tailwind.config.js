@@ -981,11 +981,12 @@ module.exports = {
   },
   plugins: [],
   corePlugins: {
-    preflight: true,
+    preflight: false,
   },
   content: [
     // Example content paths...
     "./public/**/*.html",
     "./src/**/*.{js,jsx,ts,tsx,vue}",
   ],
+  important: "#root",
 };

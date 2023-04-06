@@ -4,57 +4,18 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Calibri&display=swap");
 
-.swiper-button-prev {
-    background-image: url("./assets/svg/chevron.svg") !important;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-    transform: scaleX(-1);
-    width: 53px;
-    height: 60px;
-    /* margin-right: 20px; */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
+a {
+text-decoration: none;
+}
+.swiper-button-prev {
+    color: red;
+}
 
 .swiper-button-next {
-    background-image: url("./assets/svg/chevron.svg") !important;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-    width: 53px;
-    height: 60px;
-    /* margin-left: 20px; */
-}
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
-    display: none;
-}
-
-/* the new container */
-.swiper-container-new {
-    position: relative;
-    width: 100%;
-}
-
-/* fix the buttons positions */
-.swiper-navigation-prev {
-    left: 0;
-    background-image: url("./assets/svg/chevron.svg") !important;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-    width: 53px;
-    height: 60px;
-}
-
-.swiper-navigation-next {
-    right: 0;
-    background-image: url("./assets/svg/chevron.svg") !important;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-    width: 53px;
-    height: 60px;
-    transform: scaleX(-1);
+    color: red;
 }

@@ -1,46 +1,64 @@
 import React, { Component } from "react";
-import Button from "./Button";
+import { Button, Container, Typography, Box } from "@mui/material";
 import logo from "../assets/svg/nba_logo_big.svg";
 import MainScreenSlider from "./MainScreenSlider";
 import { Link } from "react-router-dom";
 const MainScreen = function () {
   return (
-    <>
-      
-      <img
-        className="w-200 h-300 absolute block top-[40px] left-0"
-        src={logo}
-        alt="Nba Logo"
-      />
-    
-      <h1 className="text-[53px] text-center relative font-calibri text-nba-lightgray mt-[76px]">
-        NBA Management System
-      </h1>
-      <h3 className="text-[32px] text-nba-darkgray text-center font-sans mt-[20px]">
-        Welcome to use this NBA Management system, you can <br /> redirect to
-        different pages according to your role by clicking the buttons bellow.
-      </h3>
-   
-      <div className="w-[801px] h-[373px] border-nba-border border-2 mt-[58px] flex items-center justify-between pl-[88px] pr-[88px]">
-        <Link to="visitor">
-          <Button
-            color="white"
-            paddings="pt-[32px] pb-[34px]"
-            className="w-[250px]"
-          >
-            Visitor
-          </Button>
-        </Link>
-        <Button
-          color="white"
-          className="w-[250px]"
-          paddings="pr-[67px] pl-[67px] pt-[32px] pb-[34px]"
+    <Container maxWidth="xl">
+      <Box className="flex items-center justify-between flex-col gap-5 mb-5">
+        <Box className="flex mr-[11rem]">
+          <img
+            className="w-200 h-300  block top-[20px]  z-index-1"
+            src={logo}
+            alt="Nba Logo"
+          />{" "}
+          <Box>
+            <Typography variant="h1" className="text-center ">
+              NBA Management System
+            </Typography>
+            <Typography variant="h4" className="text-center">
+              Welcome to use this NBA Management system, you can <br /> redirect
+              to different pages according to your role by clicking the buttons
+              below.
+            </Typography>
+          </Box>
+        </Box>
+        <Container
+          maxWidth="xl"
+          className="h-[373px] border-nba-border border-2 border-solid  flex items-center justify-around pl-[88px] pr-[88px]"
         >
-          Admin
-        </Button>
-      </div>
+          <Link to="visitor">
+            <Button
+              size="large"
+              variant="contained"
+              style={{
+                maxWidth: "220px",
+                maxHeight: "90px",
+                minWidth: "220px",
+                minHeight: "90px",
+                fontSize: "30px",
+              }}
+            >
+              Visitor
+            </Button>
+          </Link>
+          <Button
+            variant="contained"
+            style={{
+              maxWidth: "220px",
+              maxHeight: "90px",
+              minWidth: "220px",
+              minHeight: "90px",
+              fontSize: "30px",
+            }}
+          >
+            Admin
+          </Button>
+        </Container>
+      </Box>
       <MainScreenSlider />
-    </>
+    </Container>
   );
 };
 

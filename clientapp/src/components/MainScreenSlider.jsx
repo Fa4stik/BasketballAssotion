@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 import Slide from "./Slide";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+
 import axios from "axios";
 export default function MainScreenSlider() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const loadData = () => {
-      const params = {
-        
-    };
+    
       axios
         .get("http://176.124.192.232/api/Picture/GetPictures?", {
           params: {
@@ -31,16 +30,30 @@ export default function MainScreenSlider() {
   }, []);
 
   return (
-    <div className="container swiper-container-new">
+    <>
       <Swiper
+        modules={[Navigation]}
         loop={true}
         navigation={true}
-        slidesPerView={3}
-        spaceBetween={70}
-       
+        slidesPerView={4}
+        breakpoints={{
+          576: {
+            width: 576,
+            slidesPerView: 2,
+          },
+          768: {
+            width: 768,
+            slidesPerView: 1,
+          },
+          1200: {
+
+            slidesPerView: 4,
+          },
+        }}
+        spaceBetween={10}
         dir="rtl"
         autoplay
-        className="w-full mt-[46px] mb-[90px] border-nba-border border-2 py-[20px] px-[90px] "
+        className="mb-[90px] border-nba-border border-2   h-[250px]"
       >
         {items.map((image, index) => (
           <SwiperSlide key={index}>
@@ -48,6 +61,6 @@ export default function MainScreenSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </>
   );
 }
