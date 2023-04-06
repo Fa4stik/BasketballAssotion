@@ -1,7 +1,14 @@
 export default function Slide({ image }) {
   return (
-    <>
-      <img src={image.url} alt="Test" className="w-full" />
-    </>
+    <div
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "200px",
+        width: "350px",
+      }}
+    ></div>
   );
 }

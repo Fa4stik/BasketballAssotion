@@ -4,6 +4,7 @@ import MainScreen from "./components/MainScreen";
 import VisitorMenu from "./components/VisitorMenu";
 import Photos from "./components/Photos";
 import { Layout } from "./components/Layout";
+import EventAdministratorMenu from "./components/EventAdministratorMenu";
 require("./index.css");
 function App() {
   let location = useLocation();
@@ -29,6 +30,10 @@ function App() {
           <Route
             path="visitor/photos"
             element={<Photos setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="eventMenu"
+            element={<EventAdministratorMenu setHeaderTitle={setHeaderTitle} />}
           />
         </Route>
       </Routes>

@@ -964,6 +964,7 @@ module.exports = {
       40: "40",
       50: "50",
     },
+
     extend: {
       colors: {
         "nba-blue": "#6995C2",
@@ -982,4 +983,9 @@ module.exports = {
   corePlugins: {
     preflight: true,
   },
+  content: [
+    // Example content paths...
+    "./public/**/*.html",
+    "./src/**/*.{js,jsx,ts,tsx,vue}",
+  ],
 };
