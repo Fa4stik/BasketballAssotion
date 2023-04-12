@@ -10,7 +10,7 @@ export default function MainScreenSlider() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const loadData = () => {
-    
+
       axios
         .get("http://176.124.192.232/api/Picture/GetPictures?", {
           params: {
@@ -22,7 +22,6 @@ export default function MainScreenSlider() {
           return response.data;
         })
         .then((data) => {
-          console.log(data);
           setItems(data);
         });
     };

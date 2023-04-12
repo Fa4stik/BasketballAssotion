@@ -5,6 +5,7 @@ import VisitorMenu from "./components/VisitorMenu";
 import Photos from "./components/Photos";
 import { Layout } from "./components/Layout";
 import EventAdministratorMenu from "./components/EventAdministratorMenu";
+import AddANewMatchupForRegularSeason from "./components/AddANewMuthcupForRegularSeason";
 require("./index.css");
 function App() {
   let location = useLocation();
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="eventMenu"
             element={<EventAdministratorMenu setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="matchups/create-new"
+            element={<AddANewMatchupForRegularSeason setHeaderTitle={setHeaderTitle} />}
           />
         </Route>
       </Routes>
