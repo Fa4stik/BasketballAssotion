@@ -10,13 +10,15 @@ const VisitorMenu = (props) => {
   return (
     <>
       <div className=" border-nba-border border-2 grid grid-cols-2 w-full items-center justify-between py-[133px] px-[166px] gap-x-[305px] gap-y-[199px]">
-        <ButtonNba
-          color="white"
-          paddings="pt-[32px] pb-[34px]"
-          className="w-[372px]"
-        >
-          Teams
-        </ButtonNba>
+        <Link to="teams">
+          <ButtonNba
+            color="white"
+            paddings="pt-[32px] pb-[34px]"
+            className="w-[372px]"
+          >
+            Teams
+          </ButtonNba>
+        </Link>
         <ButtonNba
           color="white"
           paddings="pt-[32px] pb-[34px]"
