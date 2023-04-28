@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/BasketballAssotion/static/css/main.605e8072.css",
-    "main.js": "/BasketballAssotion/static/js/main.45746e7b.js",
-    "static/js/787.b6fd2ddb.chunk.js": "/BasketballAssotion/static/js/787.b6fd2ddb.chunk.js",
-    "static/media/nba_logo_small.svg": "/BasketballAssotion/static/media/nba_logo_small.1f2e960f3116be784d4fb2d64dbd03ed.svg",
-    "static/media/nba_logo_big.svg": "/BasketballAssotion/static/media/nba_logo_big.56e303d5f99ec2d2897cc1c23e47daf7.svg",
-    "index.html": "/BasketballAssotion/index.html",
-    "main.605e8072.css.map": "/BasketballAssotion/static/css/main.605e8072.css.map",
-    "main.45746e7b.js.map": "/BasketballAssotion/static/js/main.45746e7b.js.map",
-    "787.b6fd2ddb.chunk.js.map": "/BasketballAssotion/static/js/787.b6fd2ddb.chunk.js.map"
+    "main.css": "./static/css/main.605e8072.css",
+    "main.js": "./static/js/main.25e8f057.js",
+    "static/js/787.b6fd2ddb.chunk.js": "./static/js/787.b6fd2ddb.chunk.js",
+    "static/media/nba_logo_small.svg": "./static/media/nba_logo_small.1f2e960f3116be784d4fb2d64dbd03ed.svg",
+    "static/media/nba_logo_big.svg": "./static/media/nba_logo_big.56e303d5f99ec2d2897cc1c23e47daf7.svg",
+    "index.html": "./index.html",
+    "main.605e8072.css.map": "./static/css/main.605e8072.css.map",
+    "main.25e8f057.js.map": "./static/js/main.25e8f057.js.map",
+    "787.b6fd2ddb.chunk.js.map": "./static/js/787.b6fd2ddb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.605e8072.css",
-    "static/js/main.45746e7b.js"
+    "static/js/main.25e8f057.js"
   ]
 }
