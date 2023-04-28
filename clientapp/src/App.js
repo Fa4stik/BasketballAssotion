@@ -5,9 +5,8 @@ import VisitorMenu from "./components/VisitorMenu";
 import Photos from "./components/Photos";
 import { Layout } from "./components/Layout";
 import EventAdministratorMenu from "./components/EventAdministratorMenu";
-import AddANewMatchupForRegularSeason from "./components/AddANewMuthcupForRegularSeason";
-import TechnicalAdministratorMenu from "./components/TechnicalAdministratorMenu";
-import AdminLogin from "./components/AdminLogin"
+import AddANewMatchupForRegularSeason from "./components/AddANewMatchupForRegularSeason";
+import TeamsMain from "./components/TeamsMain";
 require("./index.css");
 function App() {
   let location = useLocation();
@@ -15,7 +14,41 @@ function App() {
 
   return (
     <>
-      <AdminLogin/>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout
+              headerTitle={headerTitle}
+              header={location.pathname !== "/"}
+            />
+          }
+        >
+          <Route index element={<MainScreen />} />
+          <Route
+            path="visitor"
+            element={<VisitorMenu setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="visitor/photos"
+            element={<Photos setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="eventMenu"
+            element={<EventAdministratorMenu setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="matchups/create-new"
+            element={
+              <AddANewMatchupForRegularSeason setHeaderTitle={setHeaderTitle} />
+            }
+          />
+          <Route
+            path="visitor/teams"
+            element={<TeamsMain setHeaderTitle={setHeaderTitle} />}
+          />
+        </Route>
+      </Routes>
     </>
   );
 }

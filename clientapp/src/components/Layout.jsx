@@ -35,7 +35,7 @@ const Layout = (props) => {
       <div className="flex flex-col min-h-screen">
         {props.header ? <Header title={props.headerTitle} /> : ""}
         <Container
-          className="flex-grow justify-center flex flex-col"
+          className="flex-grow flex flex-col"
           maxWidth="xl"
         >
           <Outlet />
