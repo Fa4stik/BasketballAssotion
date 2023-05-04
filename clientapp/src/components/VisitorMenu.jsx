@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from "react";
 import ButtonNba from "./ButtonNba";
-import {Link,Outlet} from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 const VisitorMenu = (props) => {
   useEffect(() => {
     const headerTitle = "Visitor Menu";
@@ -19,13 +19,15 @@ const VisitorMenu = (props) => {
             Teams
           </ButtonNba>
         </Link>
-        <ButtonNba
-          color="white"
-          paddings="pt-[32px] pb-[34px]"
-          className="w-[372px]"
-        >
-          Players
-        </ButtonNba>
+        <Link to='players'>
+          <ButtonNba
+            color="white"
+            paddings="pt-[32px] pb-[34px]"
+            className="w-[372px]"
+          >
+            Players
+          </ButtonNba>
+        </Link>
         <ButtonNba
           color="white"
           paddings="pt-[32px] pb-[34px]"
