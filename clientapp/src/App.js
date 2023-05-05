@@ -7,6 +7,7 @@ import { Layout } from "./components/Layout";
 import EventAdministratorMenu from "./components/EventAdministratorMenu";
 import AddANewMatchupForRegularSeason from "./components/AddANewMatchupForRegularSeason";
 import TeamsMain from "./components/TeamsMain";
+import PlayesMain from "./components/PlayersMain";
 require("./index.css");
 function App() {
   let location = useLocation();
@@ -46,6 +47,10 @@ function App() {
           <Route
             path="visitor/teams"
             element={<TeamsMain setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="visitor/players"
+            element={<PlayesMain setHeaderTitle={setHeaderTitle} />}
           />
         </Route>
       </Routes>
