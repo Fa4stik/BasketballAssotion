@@ -1,39 +1,17 @@
 import $api from "./instance"
 
 
-const getPlayersBySeason = async (seasonId = 3) => {
+const getPlayersByFilter = async (seasonId = 3, pageNum = 1, teamId = null, playerName = null, startLetter = null) => {
     return $api.get('/PlayerInTeam/GetPlayerSearch', {
         params: {
-            seasonId
-        }
-    })
-}
-
-const getPlayersByTeam = async (teamId) => {
-    return $api.get('/PlayerInTeam/GetPlayerSearch', {
-        params: {
-            seasonId: 3,
-            teamId
-        }
-    })
-}
-
-const getPlayersByPlayer = async (playerName) => {
-    return $api.get('/PlayerInTeam/GetPlayerSearch', {
-        params: {
-            seasonId: 3,
-            playerName
-        }
-    })
-}
-
-const getPlayersByLetter = async (startLetter) => {
-    return $api.get('/PlayerInTeam/GetPlayerSearch', {
-        params: {
-            seasonId: 3,
+            pageNum,
+            pageSize: 5,
+            seasonId,
+            teamId,
+            playerName,
             startLetter
         }
     })
 }
 
-export const playersApi = { getPlayersBySeason, getPlayersByTeam, getPlayersByLetter, getPlayersByPlayer }
+export const playersApi = { getPlayersByFilter }
