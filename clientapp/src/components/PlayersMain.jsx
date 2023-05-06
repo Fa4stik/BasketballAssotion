@@ -4,6 +4,7 @@ import { playersApi } from "../api/playersApi";
 import { Button, MenuItem, Pagination, Select, Typography } from "@mui/material";
 import { teamApi } from "../api/teamApi";
 import uuid from 'react-uuid'
+import zIndex from "@mui/material/styles/zIndex";
 
 const columns = [
     { field: 'photo', headerName: 'Photo', width: 200 },
@@ -20,13 +21,13 @@ const columns = [
 const PlayesMain = () => {
     const [rows, setRows] = useState([])
     const [season, setSeason] = useState(3)
-    const [team, setTeam] = useState(null)
+    const [team, setTeam] = useState("")
     const [player, setPlayer] = useState(null)
     const [teams, setTeams] = useState([])
     const [players, setPlayers] = useState([])
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
-    const [startLetter, setStartLetter] = useState(null)
+    const [startLetter, setStartLetter] = useState("")
     const ABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
     const addId = (arr) => {
@@ -37,15 +38,22 @@ const PlayesMain = () => {
         return arr.map(el => ({ playerName: el.playerName, playerId: el.playerId }))
     }
 
+    const filterPlayer = (arr, id) => {
+        const myUser = players.find(el => el.playerId === id)
+        if (myUser !== undefined) {
+            return players.find(el => el.playerId === id)
+        }
+        return null
+    }
+
 
     useEffect(() => {
-        playersApi.getPlayersByFilter(season, page, team, player, startLetter)
+        playersApi.getPlayersByFilter(season, page, team, player?.playerName, startLetter)
             .then(response => {
                 setTotalPages(response.headers.get('totalpages'))
                 return response.data
             })
             .then(data => {
-                console.log(data)
                 setPlayers(getNames(data))
                 setRows(addId(data))
             })
@@ -54,6 +62,15 @@ const PlayesMain = () => {
         teamApi.getTeamNames()
             .then(response => setTeams(response.data))
     }, [season, page, team, player, startLetter])
+
+
+    const handleCleanFilters = () => {
+        setSeason(3)
+        setPage(1)
+        setTeam("")
+        setPlayer("")
+        setStartLetter("")
+    }
 
 
     return (
@@ -110,8 +127,8 @@ const PlayesMain = () => {
                     </Typography>
 
                     <Select
-                        onChange={(e) => setPlayer(e.target.value)}
-                        value={player}
+                        onChange={(e) => setPlayer(filterPlayer(players, e.target.value))}
+                        value={filterPlayer(players, player?.playerId)?.playerId}
                         sx={{
                             width: '240px',
                             mr: '20px'
@@ -124,6 +141,10 @@ const PlayesMain = () => {
                             </MenuItem>
                         ))}
                     </Select>
+
+                    <Button onClick={handleCleanFilters}>
+                        Сбросить фильтры
+                    </Button>
                 </div>
             </div>
             {rows.length > 0 ?

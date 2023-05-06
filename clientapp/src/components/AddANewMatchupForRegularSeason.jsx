@@ -24,7 +24,6 @@ const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
         teamApi.getTeamNames()
             .then(response => {
                 setTeams(response.data)
-                console.log(response.data)
             })
         const headerTitle = "Add a new matchup for regular season";
         setHeaderTitle(headerTitle);
@@ -57,8 +56,6 @@ const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
 
     const handleSumbitForm = (e) => {
         e.preventDefault();
-        console.log(form.team_away.id)
-        console.log(form.team_home.id)
 
         if (form.team_away.id === form.team_home.id) {
             alert.current.style.opacity = '1';

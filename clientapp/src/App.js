@@ -9,6 +9,8 @@ import AddANewMatchupForRegularSeason from "./components/AddANewMatchupForRegula
 import TeamsMain from "./components/TeamsMain";
 import PlayesMain from "./components/PlayersMain";
 require("./index.css");
+
+
 function App() {
   let location = useLocation();
   const [headerTitle, setHeaderTitle] = useState("");
