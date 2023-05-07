@@ -1,27 +1,41 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import InputNba from "./InputNba"
 import { teamApi } from "../api/teamApi";
-import { Typography } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 
 const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
-    const [teams, setTeams] = useState([]);
+    const navigate = useNavigate()
+    const alert = useRef()
+    const [teams, setTeams] = useState([])
     const [form, setForm] = useState({
+        type: 1,
+        season: 3,
         date: '',
         time: '',
         location: '',
-        team_away: '',
-        team_home: ''
+        team_away: {},
+        team_home: {}
     })
+    const [teamHomeId, setTeamHomeId] = useState(1)
 
     useEffect(() => {
         teamApi.getTeamNames()
-            .then(response => setTeams(response.data))
+            .then(response => {
+                setTeams(response.data)
+            })
         const headerTitle = "Add a new matchup for regular season";
         setHeaderTitle(headerTitle);
         document.title = headerTitle;
     }, [])
 
+    useEffect(() => {
+        if (teamHomeId !== null) {
+            teamApi.getTeamStadium(teamHomeId)
+                .then(response => setForm({ ...form, location: response.data }))
+        }
+    }, [teamHomeId])
 
     const handleChange = ({ target }) => {
         if (target.name === 'date') {
@@ -31,21 +45,30 @@ const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
         } else if (target.name === 'location') {
             setForm({ ...form, location: target.value })
         } else if (target.name === 'team_away') {
-            setForm({ ...form, team_away: target.value })
+            const currentId = teams.find(el => el.teamName === target.value)
+            setForm({ ...form, team_away: { name: target.value, id: currentId.teamId } })
         } else {
-            setForm({ ...form, team_home: target.value })
+            const currentId = teams.find(el => el.teamName === target.value)
+            setForm({ ...form, team_home: { name: target.value, id: currentId.teamId } })
+            setTeamHomeId(currentId.teamId)
         }
     }
 
     const handleSumbitForm = (e) => {
         e.preventDefault();
 
-        //send form on back
+        if (form.team_away.id === form.team_home.id) {
+            alert.current.style.opacity = '1';
+            setTimeout(() => alert.current.style.opacity = '0', 2000)
+        } else {
+            teamApi.createNewMatchup(form)
+            navigate('/')
+        }
     }
 
     return (
         <>
-            <div className="border-nba-border border-2 border-solid flex justify-center py-[20px]">
+            <div className="border-nba-border border-2 border-solid flex justify-center py-[20px] mt-[100px] pb-[35px]">
                 <div className="flex flex-col items-center max-w-screen-lg w-full opacity-80">
                     <div className="flex justify-between w-full pb-[40px] " >
                         <Typography className='text-[34px]'>
@@ -104,7 +127,7 @@ const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
                                 height='60'
                                 width='350'
                                 options={teams}
-                                value={form.team_away}
+                                value={form.team_away.name}
                                 handleChange={handleChange} />
                         </div>
                         <Typography className='text-[50px] font-semibold'>
@@ -120,9 +143,9 @@ const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
                                 height='60'
                                 width='350'
                                 options={teams}
-                                value={form.team_home}
-                                handleChange={handleChange} 
-                                />
+                                value={form.team_home.name}
+                                handleChange={handleChange}
+                            />
                         </div>
                     </div>
                 </div>
@@ -132,6 +155,18 @@ const AddANewMatchupForRegularSeason = ({ setHeaderTitle }) => {
                 onClick={handleSumbitForm}>
                 Submit
             </button>
+            <Alert severity="error" sx={{
+                position: 'absolute',
+                width: '350px',
+                right: '20px',
+                top: '120px',
+                opacity: '0',
+                transition: 'all 1s linear',
+                borderRadius: '5px'
+            }}
+                ref={alert}>
+                Команды совпадают
+            </Alert>
         </>
     )
 }

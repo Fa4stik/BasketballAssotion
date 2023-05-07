@@ -10,13 +10,13 @@ function Footer() {
     setSeason(`${currSeason.getFullYear() - 1}-${currSeason.getFullYear()}`);
     setAnniversary(currSeason.getFullYear() - nbaCreate);
   },[]);
-  
+  //ахахахахах
    
   return (
     <footer className="bg-nba-blue">
       <Typography className="text-center text-[28px] text-white">
-        The current season is {season}, and the NBA already has a history of{" "}
-        {anniversary} years.
+        The current season is 2016-2017, and the NBA already has a history of{" "}
+        71 years.
       </Typography>
     </footer>
   );
