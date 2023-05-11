@@ -71,7 +71,11 @@ const PlayerDetailCharts = ({ playerId, dateStart, dateEnd }) => {
         const avgBlocks = sumBlocks / count;
         const avgAssists = sumAssists / count;
 
-        setAverages([avgPoints, avgRebounds, avgSteals, avgBlocks, avgAssists]);
+        setAverages(
+          [avgPoints, avgRebounds, avgSteals, avgBlocks, avgAssists].map(
+            (item) => item.toFixed(2)
+          )
+        );
       })
       .catch((error) => {
         console.error("Error fetching player statistics:", error);
@@ -85,7 +89,7 @@ const PlayerDetailCharts = ({ playerId, dateStart, dateEnd }) => {
   const tabPanels = chartTitles.map((title, index) => (
     <TabPanel key={index} value={value} index={index}>
       <Typography align="center">
-        The average of {title.toLowerCase()}: {averages[index].toFixed(2)}
+        The average of {title.toLowerCase()}: {averages[index]}
       </Typography>
       <div>
         <Line
