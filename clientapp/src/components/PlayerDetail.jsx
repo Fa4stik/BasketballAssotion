@@ -175,7 +175,7 @@ function PlayerDetail({ setHeaderTitle }) {
             </Grid>
 
             <Grid item xs={12}>
-              <Stack height={"600px"}>
+              <Stack >
                 <div className="flex items-baseline">
                   <Typography variant="h4" paragraph>
                     Date:

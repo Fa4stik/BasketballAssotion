@@ -250,6 +250,7 @@ const PlayesMain = ({ setHeaderTitle }) => {
             rowSelectionModel={select}
             hideFooterPagination
             columns={columns}
+            hideFooter
             initialState={{
               pagination: {
                 paginationModel: {
