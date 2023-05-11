@@ -13,5 +13,14 @@ const getPlayersByFilter = async (seasonId = 3, pageNum = 1, teamId = null, play
         }
     })
 }
+const getPlayerDetails = async (
+  playerId 
+) => {
+  return $api.get("/Player/GetPlayerDetails", {
+    params: {
+      playerId: playerId,
+    },
+  });
+};
 
-export const playersApi = { getPlayersByFilter }
+export const playersApi = { getPlayersByFilter, getPlayerDetails };

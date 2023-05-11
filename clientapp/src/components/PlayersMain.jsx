@@ -8,6 +8,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
+import { useNavigate, redirect } from "react-router-dom";
 import { teamApi } from "../api/teamApi";
 import uuid from "react-uuid";
 import zIndex from "@mui/material/styles/zIndex";
@@ -64,7 +65,7 @@ const PlayesMain = () => {
     "Y",
     "Z",
   ];
-
+  const navigate = useNavigate();
   const addId = (arr) => {
     return arr.map((el) => Object.assign({}, el, { id: el.playerId }));
   };
@@ -95,10 +96,13 @@ const PlayesMain = () => {
         setPlayers(getNames(data));
         setRows(addId(data));
       });
-
+      setSelection([])
     teamApi.getTeamNames().then((response) => setTeams(response.data));
   }, [season, page, team, player, startLetter]);
+  if (select.length > 0) { 
+    navigate(`${select[0].playerId}`);
 
+  }
   const handleCleanFilters = () => {
     setSeason(3);
     setPage(1);
@@ -106,7 +110,7 @@ const PlayesMain = () => {
     setPlayer("");
     setStartLetter("");
   };
-
+  
   return (
     <>
       <div className="sort">
@@ -197,9 +201,10 @@ const PlayesMain = () => {
               const selectedRowData = rows.filter((row) =>
                 newSelection.includes(row.id)
               );
-              setSelection(selectedRowData);
-            //   console.log(rows, newSelection, selectedRowData);
+              setSelection(selectedRowData)
+
             }}
+            rowSelectionModel={select}
             hideFooterPagination
             columns={columns}
             initialState={{
@@ -216,7 +221,9 @@ const PlayesMain = () => {
             shape="rounded"
             count={Number(totalPages)}
             page={Number(page)}
-            onChange={(e) => setPage(Number(e.target.innerText))}
+            onChange={(e) => {
+              setPage(Number(e.target.innerText))
+            }}
           />
         </div>
       ) : (
