@@ -37,7 +37,7 @@ const columns = [
   { field: "country", headerName: "Country", width: 200 },
 ];
 
-const PlayesMain = () => {
+const PlayesMain = ({ setHeaderTitle }) => {
   const [rows, setRows] = useState([]);
   const [season, setSeason] = useState(3);
   const [team, setTeam] = useState("");
@@ -84,6 +84,7 @@ const PlayesMain = () => {
     return arr.map(el => Object.assign({}, el, { photo: process.env.REACT_APP_SERVER_URL + el.photo }))
   }
 
+
   const navigate = useNavigate();
   const addId = (arr) => {
     console.log(arr)
@@ -107,6 +108,12 @@ const PlayesMain = () => {
   };
 
   useEffect(() => {
+    const headerTitle = "Players";
+    setHeaderTitle(headerTitle);
+    document.title = headerTitle;
+  }, [])
+
+  useEffect(() => {
     playersApi
       .getPlayersByFilter(season, page, team, player?.playerName, startLetter)
       .then((response) => {
@@ -120,9 +127,9 @@ const PlayesMain = () => {
     setSelection([])
     teamApi.getTeamNames().then((response) => setTeams(response.data));
   }, [season, page, team, player, startLetter]);
+
   if (select.length > 0) {
     navigate(`${select[0].playerId}`);
-
   }
   const handleCleanFilters = () => {
     setSeason(3);
