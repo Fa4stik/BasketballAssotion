@@ -2,19 +2,31 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { playersApi } from "../api/playersApi";
 import {
+  Avatar,
   Button,
   MenuItem,
   Pagination,
   Select,
   Typography,
 } from "@mui/material";
-import { useNavigate, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { teamApi } from "../api/teamApi";
 import uuid from "react-uuid";
-import zIndex from "@mui/material/styles/zIndex";
 
 const columns = [
-  { field: "photo", headerName: "Photo", width: 200 },
+  {
+    field: "photo", headerName: "Photo", width: 150, align: 'center',
+    renderCell: (params) => {
+      return (
+        <Avatar src={params.value} sx={{
+          width: '80px',
+          height: '80px',
+          marginTop: '5px',
+          marginBottom: '5px',
+        }} />
+      )
+    }
+  },
   { field: "shirtnumber", headerName: "No", width: 90 },
   { field: "playerName", headerName: "Name", width: 200 },
   { field: "teamName", headerName: "Team", width: 200 },
@@ -63,11 +75,20 @@ const PlayesMain = () => {
     "W",
     "X",
     "Y",
-    "Z",
+    "Z"
   ];
+
+
+  const addPhoto = (arr) => {
+    // return arr.map(el => Object.assign({}, el, { photo: (el.photo === null ? require('../player_sample.png') : process.env.SERVER_URL + el.photo) }))
+    return arr.map(el => Object.assign({}, el, { photo: process.env.REACT_APP_SERVER_URL + el.photo }))
+  }
+
   const navigate = useNavigate();
   const addId = (arr) => {
-    return arr.map((el) => Object.assign({}, el, { id: el.playerId }));
+    console.log(arr)
+    const newArr = addPhoto(arr)
+    return newArr.map((el) => Object.assign({}, el, { id: el.playerId }));
   };
 
   const getNames = (arr) => {
@@ -96,10 +117,10 @@ const PlayesMain = () => {
         setPlayers(getNames(data));
         setRows(addId(data));
       });
-      setSelection([])
+    setSelection([])
     teamApi.getTeamNames().then((response) => setTeams(response.data));
   }, [season, page, team, player, startLetter]);
-  if (select.length > 0) { 
+  if (select.length > 0) {
     navigate(`${select[0].playerId}`);
 
   }
@@ -110,7 +131,7 @@ const PlayesMain = () => {
     setPlayer("");
     setStartLetter("");
   };
-  
+
   return (
     <>
       <div className="sort">
@@ -195,6 +216,7 @@ const PlayesMain = () => {
       {rows.length > 0 ? (
         <div>
           <DataGrid
+            getRowHeight={() => 'auto'}
             className="mt-[15px]"
             rows={rows}
             onRowSelectionModelChange={(newSelection) => {
