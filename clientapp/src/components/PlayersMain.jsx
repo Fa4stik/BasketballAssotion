@@ -15,17 +15,23 @@ import uuid from "react-uuid";
 
 const columns = [
   {
-    field: "photo", headerName: "Photo", width: 150, align: 'center',
+    field: "photo",
+    headerName: "Photo",
+    width: 150,
+    align: "center",
     renderCell: (params) => {
       return (
-        <Avatar src={params.value} sx={{
-          width: '80px',
-          height: '80px',
-          marginTop: '5px',
-          marginBottom: '5px',
-        }} />
-      )
-    }
+        <Avatar
+          src={params.value}
+          sx={{
+            width: "80px",
+            height: "80px",
+            marginTop: "5px",
+            marginBottom: "5px",
+          }}
+        />
+      );
+    },
   },
   { field: "shirtnumber", headerName: "No", width: 90 },
   { field: "playerName", headerName: "Name", width: 200 },
@@ -75,20 +81,22 @@ const PlayesMain = ({ setHeaderTitle }) => {
     "W",
     "X",
     "Y",
-    "Z"
+    "Z",
   ];
-
 
   const addPhoto = (arr) => {
     // return arr.map(el => Object.assign({}, el, { photo: (el.photo === null ? require('../player_sample.png') : process.env.SERVER_URL + el.photo) }))
-    return arr.map(el => Object.assign({}, el, { photo: process.env.REACT_APP_SERVER_URL + el.photo }))
-  }
-
+    return arr.map((el) =>
+      Object.assign({}, el, {
+        photo: process.env.REACT_APP_SERVER_URL + String(el.photo),
+      })
+    );
+  };
 
   const navigate = useNavigate();
   const addId = (arr) => {
-    console.log(arr)
-    const newArr = addPhoto(arr)
+    console.log(arr);
+    const newArr = addPhoto(arr);
     return newArr.map((el) => Object.assign({}, el, { id: el.playerId }));
   };
 
@@ -111,7 +119,8 @@ const PlayesMain = ({ setHeaderTitle }) => {
     const headerTitle = "Players";
     setHeaderTitle(headerTitle);
     document.title = headerTitle;
-  }, [])
+    setSelection([]);
+  }, []);
 
   useEffect(() => {
     playersApi
@@ -124,13 +133,14 @@ const PlayesMain = ({ setHeaderTitle }) => {
         setPlayers(getNames(data));
         setRows(addId(data));
       });
-    setSelection([])
+
     teamApi.getTeamNames().then((response) => setTeams(response.data));
   }, [season, page, team, player, startLetter]);
-
-  if (select.length > 0) {
-    navigate(`${select[0].playerId}`);
-  }
+  useEffect(() => {
+    if (select.length > 0) {
+      navigate(`${select[0].playerId}`);
+    }
+  }, [select, navigate]);
   const handleCleanFilters = () => {
     setSeason(3);
     setPage(1);
@@ -138,6 +148,16 @@ const PlayesMain = ({ setHeaderTitle }) => {
     setPlayer("");
     setStartLetter("");
   };
+    const handleRowChange = (newSelection) => {
+      if (newSelection.length > 0) {
+        const selectedRowData = rows.filter((row) =>
+          newSelection.includes(row.id)
+        );
+        setSelection(selectedRowData);
+      } else {
+        setSelection([]);
+      }
+    };
 
   return (
     <>
@@ -223,16 +243,10 @@ const PlayesMain = ({ setHeaderTitle }) => {
       {rows.length > 0 ? (
         <div>
           <DataGrid
-            getRowHeight={() => 'auto'}
+            getRowHeight={() => "auto"}
             className="mt-[15px]"
             rows={rows}
-            onRowSelectionModelChange={(newSelection) => {
-              const selectedRowData = rows.filter((row) =>
-                newSelection.includes(row.id)
-              );
-              setSelection(selectedRowData)
-
-            }}
+            onRowSelectionModelChange={handleRowChange}
             rowSelectionModel={select}
             hideFooterPagination
             columns={columns}
@@ -251,7 +265,7 @@ const PlayesMain = ({ setHeaderTitle }) => {
             count={Number(totalPages)}
             page={Number(page)}
             onChange={(e) => {
-              setPage(Number(e.target.innerText))
+              setPage(Number(e.target.innerText));
             }}
           />
         </div>
