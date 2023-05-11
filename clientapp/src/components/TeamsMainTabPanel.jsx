@@ -1,38 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Typography,
-  Box,
-  Grid,
-  Stack,
-  Container,
-  Divider,
-  Avatar,
-} from "@mui/material";
+import { Typography, Box, Stack, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { teamApi } from "../api/teamApi";
-const TabPanel = ({ children, value, index, ...other }) => {
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Container maxWidth="xxl">
-          <Box>{children}</Box>
-        </Container>
-      )}
-    </div>
-  );
-};
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
+import TabPanel from "./TabPanel";
 const TeamsMainTabPanel = ({ value, index }) => {
   const [divisions, setDivisions] = useState([]);
   useEffect(() => {

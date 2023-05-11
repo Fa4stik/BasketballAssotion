@@ -9,19 +9,23 @@
   TableRow,
   TableCell,
   TableBody,
+  Tabs,
+  Tab,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 import InputNba from "./InputNba";
 import { playersApi } from "../api/playersApi";
+import TabPanel from "./TabPanel";
+import PlayerDetailCharts from "./PlayerDetailCharts";
 
 function PlayerDetail({ setHeaderTitle }) {
   const { playerId } = useParams();
   const [playerDetail, setPlayerDetails] = useState({});
 
-  const [dateStart, setDateStart] = useState(new Date());
-  const [dateEnd, setDateEnd] = useState(new Date());
+  const [dateStart, setDateStart] = useState("2010-01-01");
+  const [dateEnd, setDateEnd] = useState("2020-09-15");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -41,6 +45,7 @@ function PlayerDetail({ setHeaderTitle }) {
   const handleChangeDateEnd = (e) => {
     setDateEnd(e.target.value);
   };
+
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
       {!loading ? (
@@ -109,13 +114,13 @@ function PlayerDetail({ setHeaderTitle }) {
                 <Table>
                   <TableHead sx={{ backgroundColor: "#0000000F" }}>
                     <TableRow>
-                      <TableCell className="p-1" align="center">
+                      <TableCell className="font-bold  p-1" align="center">
                         PPG
                       </TableCell>
-                      <TableCell className="p-1" align="center">
+                      <TableCell className="font-bold  p-1" align="center">
                         APG
                       </TableCell>
-                      <TableCell className="p-1" align="center">
+                      <TableCell className="font-bold  p-1" align="center">
                         RPG
                       </TableCell>
                     </TableRow>
@@ -142,13 +147,13 @@ function PlayerDetail({ setHeaderTitle }) {
                 <Table>
                   <TableHead sx={{ backgroundColor: "#0000000F" }}>
                     <TableRow>
-                      <TableCell className="p-1" align="center">
+                      <TableCell className="font-bold  p-1" align="center">
                         PPG
                       </TableCell>
-                      <TableCell className="p-1" align="center">
+                      <TableCell className="font-bold  p-1" align="center">
                         APG
                       </TableCell>
-                      <TableCell className="p-1" align="center">
+                      <TableCell className="font-bold p-1" align="center">
                         RPG
                       </TableCell>
                     </TableRow>
@@ -175,8 +180,8 @@ function PlayerDetail({ setHeaderTitle }) {
             </Grid>
 
             <Grid item xs={12}>
-              <Stack >
-                <div className="flex items-baseline">
+              <Stack className="border-black border-2 border-solid p-5">
+                <div className="flex items-baseline ">
                   <Typography variant="h4" paragraph>
                     Date:
                   </Typography>
@@ -187,6 +192,7 @@ function PlayerDetail({ setHeaderTitle }) {
                     width="240"
                     height="50"
                     handleChange={handleChangeDateStart}
+                    defaultValue={dateStart}
                   />
                   <InputNba
                     type="date"
@@ -195,14 +201,21 @@ function PlayerDetail({ setHeaderTitle }) {
                     width="240"
                     value={dateEnd}
                     handleChange={handleChangeDateEnd}
+                    defaultValue={dateEnd}
                   />
-                  <button
+                  {/* <button
                     className="w-[140px] h-[45px] text-[28px] bg-transparent ml-[30px] border-1 rounded-[8px] cursor-pointer hover:opacity-80 border"
                     type="submit"
                   >
                     Search
-                  </button>
+                  </button> */}
                 </div>
+
+                <PlayerDetailCharts
+                  playerId={playerId}
+                  dateStart={dateStart}
+                  dateEnd={dateEnd}
+                />
               </Stack>
             </Grid>
           </Grid>
