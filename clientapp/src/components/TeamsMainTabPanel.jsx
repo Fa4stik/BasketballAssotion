@@ -8,7 +8,7 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { teamApi } from "../api/teamApi";
 const TabPanel = ({ children, value, index, ...other }) => {
@@ -58,14 +58,14 @@ const TeamsMainTabPanel = ({ value, index }) => {
             </Typography>
             <Stack spacing={2} className="py-5 px-5">
               {division.teams.map((team, pos) => (
-                <Box className="border border-sky-500">
+                <Box className="border border-sky-500" key={pos}>
                   <Box className="flex gap-x-3">
                     <img
                       alt={team.teamname}
                       className="w-[98px] h-[101px] object-contain "
                       src={`http://176.124.192.232${team.logo}`}
                     />
-                    <Box className='flex flex-col w-100'>
+                    <Box className="flex flex-col w-[55%] gap-y-5	">
                       <Typography variant="h5">{team.teamname}</Typography>
                       <Box className="flex justify-between">
                         <Link>

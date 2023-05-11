@@ -6,18 +6,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import axios from "axios";
+import { picturesApi } from "../api/picturesApi";
 export default function MainScreenSlider() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const loadData = () => {
 
-      axios
-        .get("http://176.124.192.232/api/Picture/GetPictures?", {
-          params: {
-            start: 1,
-            end: 100,
-          },
-        })
+      picturesApi.getPictures(1,100)
         .then((response) => {
           return response.data;
         })
