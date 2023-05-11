@@ -1,18 +1,20 @@
 import React from "react";
 import Logo from "../assets/svg/nba_logo_small.svg";
 import ButtonNba from "./ButtonNba";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Typography, Button } from "@mui/material";
 const Header = (props) => {
   let navigate = useNavigate();
   return (
     <>
       <header className="px-[27px] py-[10px] grid items-end justify-center grid-flow-col grid-cols-3 border-[2px] border-nba-blue border-solid">
-        <div className="flex items-end">
-          <img className="pr-[23px]" src={Logo} alt="Nba Logo" />
-          <Typography className="text-nba-textGray text-[25px]">
-            NBA Management System
-          </Typography>
+        <div>
+          <Link to='/' className="flex items-end">
+            <img className="pr-[23px]" src={Logo} alt="Nba Logo" />
+            <Typography className="text-nba-textGray text-[25px]">
+              NBA Management System
+            </Typography>
+          </Link>
         </div>
         <Typography
           variant="h2"
