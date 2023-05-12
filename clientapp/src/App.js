@@ -62,15 +62,17 @@ function App() {
             path="visitor/players/:playerId"
             element={<PlayerDetail setHeaderTitle={setHeaderTitle} />}
           />
+          <Route
+            path="admin"
+            element={<AdminLogin setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="admin/techAdmin"
+            element={
+              <TechnicalAdministratorMenu setHeaderTitle={setHeaderTitle} />
+            }
+          />
         </Route>
-        <Route
-          path="admin"
-          element={<AdminLogin setHeaderTitle={setHeaderTitle} />}
-        />
-        <Route
-          path="admin/techAdmin"
-          element={<TechnicalAdministratorMenu setHeaderTitle={setHeaderTitle} />}
-        />
       </Routes>
     </>
   );
