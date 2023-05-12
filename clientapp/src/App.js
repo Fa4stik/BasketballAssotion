@@ -8,6 +8,8 @@ import EventAdministratorMenu from "./components/EventAdministratorMenu";
 import AddANewMatchupForRegularSeason from "./components/AddANewMatchupForRegularSeason";
 import TeamsMain from "./components/TeamsMain";
 import PlayesMain from "./components/PlayersMain";
+import AdminLogin from "./components/AdminLogin";
+import TechnicalAdministratorMenu from "./components/TechnicalAdministratorMenu";
 require("./index.css");
 
 
@@ -36,8 +38,9 @@ function App() {
             path="visitor/photos"
             element={<Photos setHeaderTitle={setHeaderTitle} />}
           />
+
           <Route
-            path="eventMenu"
+            path="admin/eventMenu"
             element={<EventAdministratorMenu setHeaderTitle={setHeaderTitle} />}
           />
           <Route
@@ -55,6 +58,14 @@ function App() {
             element={<PlayesMain setHeaderTitle={setHeaderTitle} />}
           />
         </Route>
+        <Route
+          path="admin"
+          element={<AdminLogin setHeaderTitle={setHeaderTitle} />}
+        />
+        <Route
+          path="admin/techAdmin"
+          element={<TechnicalAdministratorMenu setHeaderTitle={setHeaderTitle} />}
+        />
       </Routes>
     </>
   );
