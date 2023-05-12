@@ -12,7 +12,7 @@ const MainScreen = function () {
             className="w-200 h-300  block top-[20px]  z-index-1"
             src={logo}
             alt="Nba Logo"
-          />{" "}
+          />
           <Box>
             <Typography variant="h1" className="text-center ">
               NBA Management System
@@ -26,7 +26,7 @@ const MainScreen = function () {
         </Box>
         <Container
           maxWidth="xl"
-          className="h-[373px] border-nba-border border-2 border-solid  flex items-center justify-around pl-[88px] pr-[88px]"
+          className="h-[273px] border-nba-border border-2 border-solid  flex items-center justify-around pl-[88px] pr-[88px]"
         >
           <Link to="visitor">
             <Button

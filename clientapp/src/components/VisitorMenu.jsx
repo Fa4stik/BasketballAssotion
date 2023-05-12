@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import ButtonNba from "./ButtonNba";
 import { Link, Outlet } from 'react-router-dom';
 const VisitorMenu = (props) => {

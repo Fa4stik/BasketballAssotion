@@ -10,6 +10,7 @@ import TeamsMain from "./components/TeamsMain";
 import PlayesMain from "./components/PlayersMain";
 import AdminLogin from "./components/AdminLogin";
 import TechnicalAdministratorMenu from "./components/TechnicalAdministratorMenu";
+import PlayerDetail from "./components/PlayerDetail";
 require("./index.css");
 
 
@@ -56,6 +57,10 @@ function App() {
           <Route
             path="visitor/players"
             element={<PlayesMain setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="visitor/players/:playerId"
+            element={<PlayerDetail setHeaderTitle={setHeaderTitle} />}
           />
         </Route>
         <Route
