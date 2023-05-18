@@ -8,5 +8,7 @@ const getPictures = async (start, end) => {
     },
   });
 };
-
-export const picturesApi = { getPictures };
+const putLike = async (id, isPlus) => {
+  return $api.put(`/Picture?id=${id}&isPlus=${isPlus}`);;
+};
+export const picturesApi = { getPictures, putLike };
