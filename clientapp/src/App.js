@@ -11,6 +11,8 @@ import PlayesMain from "./components/PlayersMain";
 import AdminLogin from "./components/AdminLogin";
 import TechnicalAdministratorMenu from "./components/TechnicalAdministratorMenu";
 import PlayerDetail from "./components/PlayerDetail";
+import MatchupList from "./components/MatchupList";
+import MatchupDetail from "./components/MatchupDetail";
 require("./index.css");
 
 
@@ -61,6 +63,14 @@ function App() {
           <Route
             path="visitor/players/:playerId"
             element={<PlayerDetail setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="visitor/matchups"
+            element={<MatchupList setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="visitor/matchups/:matchupId"
+            element={<MatchupDetail setHeaderTitle={setHeaderTitle} />}
           />
           <Route
             path="admin"
