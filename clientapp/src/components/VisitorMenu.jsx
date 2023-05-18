@@ -28,13 +28,15 @@ const VisitorMenu = (props) => {
             Players
           </ButtonNba>
         </Link>
-        <ButtonNba
-          color="white"
-          paddings="pt-[32px] pb-[34px]"
-          className="w-[372px]"
-        >
-          Matchups
-        </ButtonNba>
+        <Link to='matchups'> 
+          <ButtonNba
+            color="white"
+            paddings="pt-[32px] pb-[34px]"
+            className="w-[372px]"
+          >
+            Matchups
+          </ButtonNba>
+        </Link>
         <Link to="photos">
           <ButtonNba
             color="white"

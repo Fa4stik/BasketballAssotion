@@ -43,6 +43,7 @@ const MainScreen = function () {
               Visitor
             </Button>
           </Link>
+          <Link to="admin">
           <Button
             variant="contained"
             style={{
@@ -55,6 +56,8 @@ const MainScreen = function () {
           >
             Admin
           </Button>
+        </Link>
+
         </Container>
       </Box>
       <MainScreenSlider />
