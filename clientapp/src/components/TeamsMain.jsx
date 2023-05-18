@@ -57,6 +57,7 @@ const TeamsMain = ({ setHeaderTitle }) => {
           key={pos}
           value={value}
           index={conference.conferenceid}
+          conference={conference.name}
         />
       ))}
     </Box>
