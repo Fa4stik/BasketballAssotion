@@ -7,6 +7,7 @@ import { Layout } from "./components/Layout";
 import EventAdministratorMenu from "./components/EventAdministratorMenu";
 import AddANewMatchupForRegularSeason from "./components/AddANewMatchupForRegularSeason";
 import TeamsMain from "./components/TeamsMain";
+import TeamDetail from "./components/TeamDetail";
 import PlayesMain from "./components/PlayersMain";
 import AdminLogin from "./components/AdminLogin";
 import TechnicalAdministratorMenu from "./components/TechnicalAdministratorMenu";
@@ -55,6 +56,10 @@ function App() {
           <Route
             path="visitor/teams"
             element={<TeamsMain setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="visitor/teams/:id"
+            element={<TeamDetail setHeaderTitle={setHeaderTitle} />}
           />
           <Route
             path="visitor/players"
