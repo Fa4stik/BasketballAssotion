@@ -237,7 +237,7 @@ const PlayesMain = ({ setHeaderTitle }) => {
             ))}
           </Select>
 
-          <Button onClick={handleCleanFilters}>Сбросить фильтры</Button>
+          <Button onClick={handleCleanFilters}>Clear filters</Button>
         </div>
       </div>
       {rows.length > 0 ? (
