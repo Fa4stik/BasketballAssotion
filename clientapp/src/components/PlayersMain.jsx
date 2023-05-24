@@ -20,9 +20,11 @@ const columns = [
     width: 150,
     align: "center",
     renderCell: (params) => {
+      console.log(params.formattedValue);
+      console.log(params.formattedValue);
       return (
         <Avatar
-          src={params.value}
+          src={params.formattedValue}
           sx={{
             width: "80px",
             height: "80px",
