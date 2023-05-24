@@ -54,8 +54,9 @@ function PlayerDetail({ setHeaderTitle }) {
             <Grid item xs={7} className="flex justify-between">
               <img
                 src={
-                  process.env.REACT_APP_SERVER_URL + playerDetail.photo ||
-                  "/images/player_sample.png"
+                  playerDetail.photo
+                    ? process.env.REACT_APP_SERVER_URL + playerDetail.photo
+                    : "/images/player_sample.png"
                 }
                 alt="Player Icon"
                 className="block"
