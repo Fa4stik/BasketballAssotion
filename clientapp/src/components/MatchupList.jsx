@@ -3,11 +3,12 @@ import { Link } from "react-router-dom"
 import {
     Box, Button, TextField, Typography, Divider
 } from "@mui/material"
+import { matchupUtils } from '../utils/matchup'
 import { matchupsApi } from '../api/matchups.api'
 import { formatDate } from '../utils/date'
 
 const MatchupList = ({ setHeaderTitle }) => {
-    const [currentDate, setCurrentDate] = useState(new Date().toISOString().split('T')[0])
+    const [currentDate, setCurrentDate] = useState(new Date('09-10-2016').toISOString().split('T')[0])
     const [matchups, setMatchups] = useState([])
     const [upcomingMatchup, setUpcomingMatchup] = useState()
 
@@ -28,19 +29,6 @@ const MatchupList = ({ setHeaderTitle }) => {
         const startTimeB = new Date(matchB.startTime);
         return startTimeA - startTimeB;
     };
-
-    const setStatus = (statusCode) => {
-        switch (statusCode) {
-            case -1:
-                return { color: "#00B0F0", text: "Not started" }
-            case 0:
-                return { color: "#FF0000", text: "Running" }
-            case 1:
-                return { color: "#999999", text: "Finished" }
-            default:
-                alert("Ошибка при получение статуса матча")
-        }
-    }
 
     useEffect(() => {
         getMatchups()
@@ -111,11 +99,11 @@ const MatchupList = ({ setHeaderTitle }) => {
                                     <Box className='flex justify-between items-center h-28 py-12' >
                                         <Typography
                                             className={`text-white py-2`}
-                                            sx={{ backgroundColor: `${setStatus(matchup.status).color}` }}
+                                            sx={{ backgroundColor: `${matchupUtils.setStatus(matchup.status).color}` }}
                                             textAlign="center"
                                             width={120}
                                         >
-                                            {setStatus(matchup.status).text}
+                                            {matchupUtils.setStatus(matchup.status).text}
                                         </Typography>
                                         <Typography
                                             textAlign="center"
@@ -145,7 +133,10 @@ const MatchupList = ({ setHeaderTitle }) => {
                                         <Typography className=' text-lg w-36' textAlign="center" width={100}>
                                             {matchup.location ? matchup.location : "Location"}
                                         </Typography>
-                                        <Link to={`${matchup.matchupId}`}>
+                                        <Link to={{
+                                            pathname: `/visitor/matchups/${matchup.matchupId}`,
+                                            search: `?matchup=${encodeURIComponent(JSON.stringify(matchup))}`
+                                        }}>
                                             <Button variant="contained" sx={{ width: 40 }}>
                                                 View
                                             </Button>
