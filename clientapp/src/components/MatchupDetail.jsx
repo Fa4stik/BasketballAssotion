@@ -31,7 +31,7 @@ const MatchupDetail = ({ setHeaderTitle }) => {
     const searchParams = new URLSearchParams(useLocation().search);
     const matchup = JSON.parse(decodeURIComponent(searchParams.get('matchup')));
 
-    const [tab, setTab] = useState(0);
+    const [tab, setTab] = useState(2);
 
     const [currentQuarter, setCurrentQuarter] = useState(1)
     const [matchupDetailTeamStatus, setMatchupDetailTeamStatus] = useState(null);
@@ -164,17 +164,31 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                 ?
                 <>
                     <Box sx={{ display: "flex", justifyContent: 'space-around', alignItems: "center", marginBottom: '3vh' }}>
-                        <Typography fontSize={24}>
-                            {matchup.awayTeam.teamname}
-                        </Typography>
+                        {
+                            matchupDetail[0].teamAwayScore > matchupDetail[0].teamHomeScore ?
+                                <Typography className="font-bold" fontSize={24}>
+                                    {matchup.awayTeam.teamname}
+                                </Typography>
+                                :
+                                <Typography fontSize={24}>
+                                    {matchup.awayTeam.teamname}
+                                </Typography>
+                        }
                         <img
                             alt={matchup.awayTeam.teamname}
                             src={`http://176.124.192.232${matchup.awayTeam.logo}`}
                             width={150}
                         />
-                        <Typography fontSize={30}>
-                            {matchupDetail && matchupDetail[0].teamAwayScore}
-                        </Typography>
+                        {
+                            matchupDetail[0].teamAwayScore > matchupDetail[0].teamHomeScore ?
+                                <Typography className="font-bold" fontSize={30}>
+                                    {matchupDetail && matchupDetail[0].teamAwayScore}
+                                </Typography>
+                                :
+                                <Typography fontSize={30}>
+                                    {matchupDetail && matchupDetail[0].teamAwayScore}
+                                </Typography>
+                        }
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', rowGap: '2vh' }}>
                             <Table sx={{ marginTop: '4vh' }}>
                                 <TableHead className='bg-gray-200'>
@@ -224,17 +238,31 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                 {matchupDetail && matchupUtils.setStatus(matchupDetail[0].status).text}
                             </Typography>
                         </Box>
-                        <Typography fontSize={30}>
-                            {matchupDetail && matchupDetail[0].teamHomeScore}
-                        </Typography>
+                        {
+                            matchupDetail[0].teamAwayScore < matchupDetail[0].teamHomeScore ?
+                                <Typography className="font-bold" fontSize={30}>
+                                    {matchupDetail && matchupDetail[0].teamHomeScore}
+                                </Typography>
+                                :
+                                <Typography fontSize={30}>
+                                    {matchupDetail && matchupDetail[0].teamHomeScore}
+                                </Typography>
+                        }
                         <img
                             alt={matchup.homeTeam.teamname}
                             src={`http://176.124.192.232${matchup.homeTeam.logo}`}
                             width={150}
                         />
-                        <Typography fontSize={24}>
-                            {matchup.homeTeam.teamname}
-                        </Typography>
+                        {
+                            matchupDetail[0].teamAwayScore < matchupDetail[0].teamHomeScore ?
+                                <Typography className="font-bold" fontSize={24}>
+                                    {matchup.homeTeam.teamname}
+                                </Typography>
+                                :
+                                <Typography fontSize={24}>
+                                    {matchup.homeTeam.teamname}
+                                </Typography>
+                        }
                     </Box>
                     <Box>
                         <Tabs value={tab} onChange={handleTabChange}>
@@ -254,14 +282,14 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                 <TableCell align="center">
                                                     <img
                                                         alt={matchup.awayTeam.teamname}
-                                                        src={`http://176.124.192.232${matchup.awayTeam.logo}`}
+                                                        src={`http://176.124.192.232${matchup.homeTeam.logo}`}
                                                         width={70}
                                                     />
                                                 </TableCell>
                                                 <TableCell align="center">
                                                     <img
                                                         alt={matchup.homeTeam.teamname}
-                                                        src={`http://176.124.192.232${matchup.homeTeam.logo}`}
+                                                        src={`http://176.124.192.232${matchup.awayTeam.logo}`}
                                                         width={70}
                                                     />
                                                 </TableCell>
@@ -273,10 +301,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     FG Made-Attempted
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.fieldGoals}
+                                                    {matchupDetailTeamStatus.item2.fieldGoals}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.fieldGoals}
+                                                    {matchupDetailTeamStatus.item1.fieldGoals}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -284,10 +312,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     3PT Made-Attempted
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.threePointGoals}
+                                                    {matchupDetailTeamStatus.item2.threePointGoals}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.threePointGoals}
+                                                    {matchupDetailTeamStatus.item1.threePointGoals}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -295,10 +323,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     FT Made-Attempted
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.freeThrowGoals}
+                                                    {matchupDetailTeamStatus.item2.freeThrowGoals}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.freeThrowGoals}
+                                                    {matchupDetailTeamStatus.item1.freeThrowGoals}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -306,10 +334,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     Rebounds
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.rebounds}
+                                                    {matchupDetailTeamStatus.item2.rebounds}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.rebounds}
+                                                    {matchupDetailTeamStatus.item1.rebounds}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -317,10 +345,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     Assits
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.assists}
+                                                    {matchupDetailTeamStatus.item2.assists}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.assists}
+                                                    {matchupDetailTeamStatus.item1.assists}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -328,10 +356,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     Steals
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.steals}
+                                                    {matchupDetailTeamStatus.item2.steals}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.steals}
+                                                    {matchupDetailTeamStatus.item1.steals}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -339,10 +367,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     Blocks
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.blocks}
+                                                    {matchupDetailTeamStatus.item2.blocks}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.blocks}
+                                                    {matchupDetailTeamStatus.item1.blocks}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow sx={{ border: 1 }}>
@@ -350,10 +378,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                     Turnovers
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item1.turnovers}
+                                                    {matchupDetailTeamStatus.item2.turnovers}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    {matchupDetailTeamStatus.item2.turnovers}
+                                                    {matchupDetailTeamStatus.item1.turnovers}
                                                 </TableCell>
                                             </TableRow>
                                         </TableBody>
@@ -366,24 +394,24 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                         </Typography>
                                         <Box sx={{ display: "flex", justifyContent: 'space-between', alignItems: "center", marginTop: '1vh', columnGap: '5px' }}>
                                             <Typography>
-                                                {matchupDetailTeamStatus.item1.teamAbbr}
+                                                {matchupDetailTeamStatus.item2.teamAbbr}
                                             </Typography>
                                             <Box sx={{ width: '60%' }}>
                                                 <LinearProgress sx={{ height: '1.5vh' }} variant="determinate" value={matchupDetailTeamStatus.item1.fieldGoalPercent} />
                                             </Box>
                                             <Typography>
-                                                {matchupDetailTeamStatus.item1.fieldGoalPercent.toFixed(2)}
+                                                {matchupDetailTeamStatus.item2.fieldGoalPercent.toFixed(2)}
                                             </Typography>
                                         </Box>
                                         <Box sx={{ display: "flex", justifyContent: 'space-between', alignItems: "center", marginTop: '1vh', columnGap: '5px' }}>
                                             <Typography>
-                                                {matchupDetailTeamStatus.item2.teamAbbr}
+                                                {matchupDetailTeamStatus.item1.teamAbbr}
                                             </Typography>
                                             <Box sx={{ width: '60%' }}>
                                                 <LinearProgress sx={{ height: '1.5vh' }} variant="determinate" value={matchupDetailTeamStatus.item2.fieldGoalPercent} />
                                             </Box>
                                             <Typography>
-                                                {matchupDetailTeamStatus.item2.fieldGoalPercent.toFixed(2)}
+                                                {matchupDetailTeamStatus.item1.fieldGoalPercent.toFixed(2)}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -393,17 +421,6 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                         </Typography>
                                         <Box sx={{ display: "flex", justifyContent: 'space-between', alignItems: "center", marginTop: '1vh', columnGap: '5px' }}>
                                             <Typography>
-                                                {matchupDetailTeamStatus.item1.teamAbbr}
-                                            </Typography>
-                                            <Box sx={{ width: '60%' }}>
-                                                <LinearProgress sx={{ height: '1.5vh' }} variant="determinate" value={matchupDetailTeamStatus.item1.threePointGoalPercent} />
-                                            </Box>
-                                            <Typography>
-                                                {matchupDetailTeamStatus.item1.threePointGoalPercent.toFixed(2)}
-                                            </Typography>
-                                        </Box>
-                                        <Box sx={{ display: "flex", justifyContent: 'space-between', alignItems: "center", marginTop: '1vh', columnGap: '5px' }}>
-                                            <Typography>
                                                 {matchupDetailTeamStatus.item2.teamAbbr}
                                             </Typography>
                                             <Box sx={{ width: '60%' }}>
@@ -411,6 +428,17 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                             </Box>
                                             <Typography>
                                                 {matchupDetailTeamStatus.item2.threePointGoalPercent.toFixed(2)}
+                                            </Typography>
+                                        </Box>
+                                        <Box sx={{ display: "flex", justifyContent: 'space-between', alignItems: "center", marginTop: '1vh', columnGap: '5px' }}>
+                                            <Typography>
+                                                {matchupDetailTeamStatus.item1.teamAbbr}
+                                            </Typography>
+                                            <Box sx={{ width: '60%' }}>
+                                                <LinearProgress sx={{ height: '1.5vh' }} variant="determinate" value={matchupDetailTeamStatus.item1.threePointGoalPercent} />
+                                            </Box>
+                                            <Typography>
+                                                {matchupDetailTeamStatus.item1.threePointGoalPercent.toFixed(2)}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -472,18 +500,31 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                         onChange={(e) => setCurrentQuarter(e.target.value)}
                                         sx={{ fontSize: 14 }}
                                     >
-                                        <MenuItem value={1} sx={{ fontSize: 20 }}>
+                                        <MenuItem value={1}>
                                             1st
                                         </MenuItem>
-                                        <MenuItem value={2} sx={{ fontSize: 20 }}>
+                                        <MenuItem value={2}>
                                             2st
                                         </MenuItem>
-                                        <MenuItem value={3} sx={{ fontSize: 20 }}>
+                                        <MenuItem value={3}>
                                             3st
                                         </MenuItem>
-                                        <MenuItem value={4} sx={{ fontSize: 20 }}>
+                                        <MenuItem value={4}>
                                             4st
                                         </MenuItem>
+                                        {
+                                            false // TODO placeholder for overtimes log if exist
+                                                ?
+                                                <>
+                                                    <MenuItem value={5}>
+                                                        OT1
+                                                    </MenuItem>
+                                                    <MenuItem value={6}>
+                                                        OT2
+                                                    </MenuItem></>
+                                                :
+                                                <></>
+                                        }
                                     </Select>
                                 </FormControl>
                                 <Button
@@ -514,10 +555,10 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                                 {log.occurtime}
                                                             </TableCell>
                                                             <TableCell sx={{ border: '1px solid rgb(229 231 235);' }} align="center">
-                                                                {log.team ? log.team : "-"}
+                                                                {log.teamAbbr ? log.teamAbbr : "-"}
                                                             </TableCell>
                                                             <TableCell sx={{ border: '1px solid rgb(229 231 235);' }} align="center">
-                                                                {log.player ? log.player : "-"}
+                                                                {log.playerNameShortNumber ? log.playerNameShortNumber : "-"}
                                                             </TableCell>
                                                             <TableCell sx={{ border: '1px solid rgb(229 231 235);' }} align="center">
                                                                 {log.actiontype ? log.actiontype : "-"}
