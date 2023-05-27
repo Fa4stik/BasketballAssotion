@@ -1,4 +1,4 @@
-import $api from "./instance"
+import $api from "./instance" 
 
 const getTeamNames = async () => {
   return $api.get('/Team/GetTeamNames')

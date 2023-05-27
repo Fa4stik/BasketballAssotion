@@ -313,7 +313,7 @@ const MatchupDetail = ({ setHeaderTitle }) => {
                                                 </TableCell>
                                                 <TableCell align="center">
                                                     {matchupDetailTeamStatus.item2.threePointGoals}
-                                                </TableCell>
+                                                </TableCell> 
                                                 <TableCell align="center">
                                                     {matchupDetailTeamStatus.item1.threePointGoals}
                                                 </TableCell>
