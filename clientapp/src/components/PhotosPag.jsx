@@ -1,13 +1,11 @@
-import React, { Component, useEffect, useState } from "react";
-import { Box, Grid, Pagination, colors } from "@mui/material";
-import axios from "axios";
-import Slide from "./Slide";
-import uuid from "react-uuid";
-import { SwiperSlide } from "swiper/react";
+import React, { useEffect, useState } from "react";
+import { Box, Grid, Pagination } from "@mui/material";
+
 import { picturesApi } from "../api/picturesApi";
-import { downloadImage, downloadPictures } from "../api/picturesDownloader";
-import { DataGrid } from "@mui/x-data-grid";
+import { downloadImage } from "../api/picturesDownloader";
+
 import ContextMenu from "./ContextMenu";
+import CustomPagination from "./CustomPagination";
 
 export default function PhotosPag() {
   const [items, setItems] = useState([]);
@@ -75,7 +73,7 @@ export default function PhotosPag() {
 
   const handleLike = () => {
     console.log("Like clicked!");
-    picturesApi.putLike(selectedPhoto, 'true');
+    picturesApi.putLike(selectedPhoto, "true");
     setContextMenu({ visible: false, x: 0, y: 0 });
   };
 
@@ -136,18 +134,11 @@ export default function PhotosPag() {
           Total 19 Photos , {items.length} Photos in one page, Total{" "}
           {totalPages} Pages
         </Box>
-
-        <Pagination
+        <CustomPagination
           count={totalPages}
           page={page}
           onChange={handlePageChange}
-          variant="outlined"
-          shape="rounded"
-          sx={{ mt: "20px" }}
-          showFirstButton
-          showLastButton
         />
-
         <Box sx={{ mt: "20px", ml: "35px" }}>
           <button
             onClick={downloadCurrentPhotos}
