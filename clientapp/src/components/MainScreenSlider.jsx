@@ -29,18 +29,22 @@ export default function MainScreenSlider() {
         modules={[Navigation]}
         loop={true}
         navigation={true}
-        slidesPerView={4}
+        slidesPerView={3}
+        slidesPerGroup={3}
         breakpoints={{
           576: {
             width: 576,
             slidesPerView: 2,
+            slidesPerGroup: 2,
           },
           768: {
             width: 768,
             slidesPerView: 1,
+            slidesPerGroup: 1,
           },
           1200: {
-            slidesPerView: 4,
+            slidesPerView: 3,
+            slidesPerGroup: 3,
           },
         }}
         spaceBetween={10}
