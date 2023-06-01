@@ -20,9 +20,11 @@ const columns = [
     width: 150,
     align: "center",
     renderCell: (params) => {
+      console.log(params.formattedValue);
+      console.log(params.formattedValue);
       return (
         <Avatar
-          src={params.value}
+          src={params.formattedValue}
           sx={{
             width: "80px",
             height: "80px",
@@ -240,7 +242,7 @@ const PlayesMain = ({ setHeaderTitle }) => {
             ))}
           </Select>
 
-          <Button onClick={handleCleanFilters}>Сбросить фильтры</Button>
+          <Button onClick={handleCleanFilters}>Clear filters</Button>
         </div>
       </div>
       {rows.length > 0 ? (

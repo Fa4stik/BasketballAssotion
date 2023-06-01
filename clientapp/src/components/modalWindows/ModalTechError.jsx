@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import {Typography} from "@mui/material";
-import {Link} from "react-router-dom";
 
 export default function Modal({isOpen, setIsOpen}) {
 

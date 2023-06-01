@@ -3,13 +3,16 @@ import { Typography, Box, Stack, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { teamApi } from "../api/teamApi";
 import TabPanel from "./TabPanel";
-const TeamsMainTabPanel = ({ value, index }) => {
+
+const TeamsMainTabPanel = ({ value, index, conference }) => {
   const [divisions, setDivisions] = useState([]);
+
   useEffect(() => {
     teamApi
       .getDivisionsWithTeams(index)
       .then((response) => setDivisions(response.data));
   }, []);
+  
   return (
     <TabPanel value={value} index={index - 1}>
       <Box className="flex gap-x-4">
@@ -38,17 +41,26 @@ const TeamsMainTabPanel = ({ value, index }) => {
                     <Box className="flex flex-col w-[55%] gap-y-5	">
                       <Typography variant="h5">{team.teamname}</Typography>
                       <Box className="flex justify-between">
-                        <Link>
+                        <Link to={{
+                          pathname: `/visitor/teams/${team.teamid}`,
+                          search: `?team=${encodeURIComponent(JSON.stringify(team))}&conference=${conference}&division=${division.name}&location=0`
+                        }}>
                           <Typography variant="body1" color={"primary"}>
                             Roster
                           </Typography>
                         </Link>
-                        <Link>
+                        <Link to={{
+                          pathname: `/visitor/teams/${team.teamid}`,
+                          search: `?team=${encodeURIComponent(JSON.stringify(team))}&conference=${conference}&division=${division.name}&location=1`
+                        }}>
                           <Typography variant="body1" color={"primary"}>
                             Matchup
                           </Typography>
                         </Link>
-                        <Link>
+                        <Link to={{
+                          pathname: `/visitor/teams/${team.teamid}`,
+                          search: `?team=${encodeURIComponent(JSON.stringify(team))}&conference=${conference}&division=${division.name}&location=2`
+                        }}>
                           <Typography variant="body1" color={"primary"}>
                             First Lineup
                           </Typography>

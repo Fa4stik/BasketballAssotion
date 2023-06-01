@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Header } from "./Header";
-import Footer from "./Footer";
-import { Button, Typography } from "@mui/material";
-import axios, { Axios } from "axios";
-import ReactDOM from "react-dom/client";
+import React, {  useState } from "react";
+import { Typography } from "@mui/material";
+import axios from "axios";
 import Modal from "./modalWindows/Modal";
 import ModalError from "./modalWindows/ModalError";
 import { useNavigate } from "react-router-dom";

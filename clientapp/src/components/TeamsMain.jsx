@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Typography,
-  Box,
-  Tabs,
-  Tab,
-  Grid,
-  Stack,
-  Container,
-} from "@mui/material";
-import PropTypes from "prop-types";
+import { Box, Tabs, Tab } from "@mui/material";
 import { teamApi } from "../api/teamApi";
 import TeamsMainTabPanel from "./TeamsMainTabPanel";
 
@@ -19,19 +10,19 @@ function a11yProps(index) {
   };
 }
 const TeamsMain = ({ setHeaderTitle }) => {
-    const [value, setValue] = useState(0);
-    const [conferences, setConferences] = useState([]);
-  
+  const [value, setValue] = useState(0);
+  const [conferences, setConferences] = useState([]);
+
   useEffect(() => {
-    teamApi.getConferenceNames().then((response) => setConferences(response.data));
+    teamApi
+      .getConferenceNames()
+      .then((response) => setConferences(response.data));
     const headerTitle = "Teams Main";
     setHeaderTitle(headerTitle);
-      document.title = headerTitle;
-      
+    document.title = headerTitle;
   }, []);
   const handleChange = (event, newValue) => {
-      setValue(newValue);
-   
+    setValue(newValue);
   };
 
   return (
@@ -57,6 +48,7 @@ const TeamsMain = ({ setHeaderTitle }) => {
           key={pos}
           value={value}
           index={conference.conferenceid}
+          conference={conference.name}
         />
       ))}
     </Box>
