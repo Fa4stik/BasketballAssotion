@@ -3,6 +3,7 @@ import { Typography, Box, Stack, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { teamApi } from "../api/teamApi";
 import TabPanel from "./TabPanel";
+import uuid from "react-uuid";
 
 const TeamsMainTabPanel = ({ value, index, conference }) => {
   const [divisions, setDivisions] = useState([]);
@@ -18,7 +19,7 @@ const TeamsMainTabPanel = ({ value, index, conference }) => {
       <Box className="flex gap-x-4">
         {divisions.map((division, pos) => (
           <Box
-            key={division.conferenceid}
+            key={uuid(pos)}
             className="mt-[59px] border-black border border-solid w-[36%]"
           >
             <Typography
@@ -41,26 +42,44 @@ const TeamsMainTabPanel = ({ value, index, conference }) => {
                     <Box className="flex flex-col w-[55%] gap-y-5	">
                       <Typography variant="h5">{team.teamname}</Typography>
                       <Box className="flex justify-between">
-                        <Link to={{
-                          pathname: `/visitor/teams/${team.teamid}`,
-                          search: `?team=${encodeURIComponent(JSON.stringify(team))}&conference=${conference}&division=${division.name}&location=0`
-                        }}>
+                        <Link
+                          to={{
+                            pathname: `/visitor/teams/${team.teamid}`,
+                            search: `?team=${encodeURIComponent(
+                              JSON.stringify(team)
+                            )}&conference=${conference}&division=${
+                              division.name
+                            }&location=0`,
+                          }}
+                        >
                           <Typography variant="body1" color={"primary"}>
                             Roster
                           </Typography>
                         </Link>
-                        <Link to={{
-                          pathname: `/visitor/teams/${team.teamid}`,
-                          search: `?team=${encodeURIComponent(JSON.stringify(team))}&conference=${conference}&division=${division.name}&location=1`
-                        }}>
+                        <Link
+                          to={{
+                            pathname: `/visitor/teams/${team.teamid}`,
+                            search: `?team=${encodeURIComponent(
+                              JSON.stringify(team)
+                            )}&conference=${conference}&division=${
+                              division.name
+                            }&location=1`,
+                          }}
+                        >
                           <Typography variant="body1" color={"primary"}>
                             Matchup
                           </Typography>
                         </Link>
-                        <Link to={{
-                          pathname: `/visitor/teams/${team.teamid}`,
-                          search: `?team=${encodeURIComponent(JSON.stringify(team))}&conference=${conference}&division=${division.name}&location=2`
-                        }}>
+                        <Link
+                          to={{
+                            pathname: `/visitor/teams/${team.teamid}`,
+                            search: `?team=${encodeURIComponent(
+                              JSON.stringify(team)
+                            )}&conference=${conference}&division=${
+                              division.name
+                            }&location=2`,
+                          }}
+                        >
                           <Typography variant="body1" color={"primary"}>
                             First Lineup
                           </Typography>
