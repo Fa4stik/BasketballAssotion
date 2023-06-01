@@ -1,28 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import ButtonNba from "./ButtonNba.jsx";
-import {Link,Outlet} from 'react-router-dom';
-import Logo from "../assets/svg/nba_logo_small.svg";
-import {Button, Typography} from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import {Outlet} from 'react-router-dom';
+
 import Footer from "./Footer";
 import ModalTechError from "./modalWindows/ModalTechError"
 
 
-const TechnicalAdministratorMenu = (props) => {
-  let navigate = useNavigate();
-  const[modalActive, setModalActive] = useState(true)
+const TechnicalAdministratorMenu = () => {
+  const[setModalActive] = useState(true)
   const [isOpen, setIsOpen] = useState(false);
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
+
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-
-  async function submit(e){
-    handleOpenModal();
-  }
 
   return (
     <>
