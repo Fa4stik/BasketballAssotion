@@ -5,7 +5,6 @@ import Slide from "./Slide";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import axios from "axios";
 import { picturesApi } from "../api/picturesApi";
 export default function MainScreenSlider() {
   const [items, setItems] = useState([]);
