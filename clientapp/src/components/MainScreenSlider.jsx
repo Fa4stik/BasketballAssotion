@@ -49,7 +49,7 @@ export default function MainScreenSlider() {
         spaceBetween={10}
         dir="rtl"
         autoplay
-        className=" border-nba-border border-2   h-[250px]"
+        className=" border-nba-border border-2   h-[250px] mb-[150px]"
       >
         {items.map((image, index) => (
           <SwiperSlide key={index}>
