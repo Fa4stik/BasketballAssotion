@@ -8,7 +8,7 @@ import { matchupsApi } from '../api/matchups.api'
 import { formatDate } from '../utils/date'
 
 const MatchupList = ({ setHeaderTitle }) => {
-    const [currentDate, setCurrentDate] = useState(new Date('09-10-2016').toISOString().split('T')[0])
+    const [currentDate, setCurrentDate] = useState(new Date('2016-09-10').toISOString().split('T')[0])
     const [matchups, setMatchups] = useState([])
     const [upcomingMatchup, setUpcomingMatchup] = useState()
 
