@@ -150,23 +150,31 @@ const PlayesMain = ({ setHeaderTitle }) => {
     setPlayer("");
     setStartLetter("");
   };
-    const handleRowChange = (newSelection) => {
-      if (newSelection.length > 0) {
-        const selectedRowData = rows.filter((row) =>
-          newSelection.includes(row.id)
-        );
-        setSelection(selectedRowData);
-      } else {
-        setSelection([]);
-      }
-    };
+  const handleRowChange = (newSelection) => {
+    if (newSelection.length > 0) {
+      const selectedRowData = rows.filter((row) =>
+        newSelection.includes(row.id)
+      );
+      setSelection(selectedRowData);
+    } else {
+      setSelection([]);
+    }
+  };
 
   return (
     <>
       <div className="sort">
         <div className="flex justify-start flex-wrap mt-[15px]">
           {ABC.map((el) => (
-            <Button key={uuid()} onClick={() => setStartLetter(el)}>
+            <Button
+              key={uuid()}
+              onClick={() => setStartLetter(el)}
+              sx={
+                el === startLetter
+                  ? { border: "1px solid gray", backgroundColor: "#C0C0C0" }
+                  : {}
+              }
+            >
               {el}
             </Button>
           ))}
@@ -270,6 +278,8 @@ const PlayesMain = ({ setHeaderTitle }) => {
             onChange={(e) => {
               setPage(Number(e.target.innerText));
             }}
+            hidePrevButton
+            hideNextButton
           />
         </div>
       ) : (
