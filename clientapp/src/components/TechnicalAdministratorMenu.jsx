@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import ButtonNba from "./ButtonNba.jsx";
 import {Link,Outlet} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import {Outlet} from 'react-router-dom';
-
 import Footer from "./Footer";
 import ModalTechError from "./modalWindows/ModalTechError"
 

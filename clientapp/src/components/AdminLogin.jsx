@@ -1,6 +1,3 @@
-import React, {  useState } from "react";
-import { Typography } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Typography } from "@mui/material";
 import axios, { Axios } from "axios";
@@ -40,12 +37,20 @@ const AdminLogin = () => {
     setIsOpen(false);
   };
 
+  const handleChangeCheckBox = (e) => {
+    let isChecked = e.target.checked;
+    console.log(isChecked)
+    localStorage.setItem("isAuth", e.target.checked)
+  }
+
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
     console.log(newdata);
   }
+
+
 
   async function submit(e) {
     e.preventDefault();
@@ -61,6 +66,7 @@ const AdminLogin = () => {
       const adminRoleID = localStorage.getItem('adminType');
       const currentUsersRoleID = response.data.roleid
       if (adminRoleID === currentUsersRoleID){
+
         if (Number(adminRoleID) === 1){
           return navigate('/admin/eventMenu');
         }
@@ -116,18 +122,18 @@ const AdminLogin = () => {
           </div>
 
           <p>
-            <input className="my-10" type="checkbox" name="remember" /> Remember
+            <input className="my-10" type="checkbox" name="remember" onChange={e => handleChangeCheckBox(e)} /> Remember
             me{" "}
           </p>
 
           <div className="my-10">
 
-              <button
-                onClick={(e) => submit(e)}
-                className="bg-transparent hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-md mx-10 "
-              >
-                Login
-              </button>
+            <button
+              onClick={(e) => submit(e)}
+              className="bg-transparent hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-md mx-10 "
+            >
+              Login
+            </button>
 
 
             <button

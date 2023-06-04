@@ -5,9 +5,12 @@ import axios from "axios";
 
 export default function Modal({isOpen, setIsOpen}) {
 
+
   async function getAdminRole(e) {
+    localStorage.setItem("adminType", null)
     if (e === 1) {
       localStorage.setItem('adminType', 1);
+
     }
     else {
       localStorage.setItem('adminType', 2);

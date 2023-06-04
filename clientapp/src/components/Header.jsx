@@ -49,6 +49,8 @@ const Header = (props) => {
         >
           {props.title}
         </Typography>
+
+        <div className="justify-self-end">
         {
           isItRouteAdmin && (
             // <button
@@ -60,7 +62,7 @@ const Header = (props) => {
             <Button
               variant="standard"
               onClick={() => logout()}
-              className="w-[150px] rounded-xl bg-nba-wheat  text-[30px] nba-textGray"
+              className="w-[150px] rounded-xl bg-nba-wheat  text-[30px] nba-textGray px-30px"
             >
               Logout
             </Button>
@@ -68,11 +70,11 @@ const Header = (props) => {
           )
 
         }
-        <div className="justify-self-end">
+
           <Button
             variant="standard"
             onClick={() => navigate(-1)}
-            className="w-[120px] rounded-xl bg-nba-wheat  text-[30px] nba-textGray"
+            className="w-[120px] rounded-xl bg-nba-wheat  text-[30px] nba-textGray px-20px"
           >
             Back
           </Button>
