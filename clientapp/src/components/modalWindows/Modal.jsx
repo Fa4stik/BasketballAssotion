@@ -5,6 +5,10 @@ import axios from "axios";
 
 export default function Modal({isOpen, setIsOpen}) {
 
+  async function closeButton() {
+    setIsOpen(false)
+    localStorage.removeItem("adminType")
+  }
 
   async function getAdminRole(e) {
     localStorage.setItem("adminType", null)
@@ -66,7 +70,7 @@ export default function Modal({isOpen, setIsOpen}) {
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
                     className="w-[80px] h-[25px]   text-[10px] nba-textGray mx-10" type="button"
-                    onClick={() => setIsOpen(false)}>
+                    onClick={() => closeButton()}>
                     Close
                   </button>
                 </div>

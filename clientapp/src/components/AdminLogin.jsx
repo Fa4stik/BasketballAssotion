@@ -68,11 +68,15 @@ const AdminLogin = () => {
       if (adminRoleID === currentUsersRoleID){
 
         if (Number(adminRoleID) === 1){
+          localStorage.removeItem("adminType")
           return navigate('/admin/eventMenu');
+
         }
 
         else if (Number(adminRoleID) === 2){
+          localStorage.removeItem("adminType")
           return navigate('/admin/techAdmin');
+
         }
 
       }
