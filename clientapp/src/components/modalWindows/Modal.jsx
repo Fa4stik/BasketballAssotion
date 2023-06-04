@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import {Typography} from "@mui/material";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 export default function Modal({isOpen, setIsOpen}) {
+
+  async function getAdminRole(e) {
+    if (e === 1) {
+      localStorage.setItem('adminType', 1);
+    }
+    else {
+      localStorage.setItem('adminType', 2);
+    }
+    setIsOpen(false);
+  }
+
   return (
     <>
       {isOpen ? (
@@ -32,18 +44,20 @@ export default function Modal({isOpen, setIsOpen}) {
                   <Typography className="text-nba-textGray text-[25px] my-10 justify-between">
                     Which type of user would you like to login to the system as?
                   </Typography>
-                  <Link to="eventMenu">
-                    <button className="w-[140px] h-[25px] text-[10px] nba-textGray mx-10">
+
+                    <button className="w-[140px] h-[25px] text-[10px] nba-textGray mx-10"
+                            onClick={() => getAdminRole(1)}>
                       Event Administrator
                     </button>
-                  </Link>
+
                   <br/>
                   <br/>
-                  <Link to="techAdmin">
-                    <button className="w-[140px] h-[25px] text-[10px] nba-textGray mx-10">
+
+                    <button className="w-[140px] h-[25px] text-[10px] nba-textGray mx-10"
+                            onClick={() => getAdminRole(2)}>
                       Technical Administrator
                     </button>
-                  </Link>
+
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

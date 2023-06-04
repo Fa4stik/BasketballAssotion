@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Header } from "./Header";
-import Footer from "./Footer";
 import { Button, Typography } from "@mui/material";
 import axios, { Axios } from "axios";
 import ReactDOM from "react-dom/client";
 import Modal from "./modalWindows/Modal";
 import ModalError from "./modalWindows/ModalError";
-import { useNavigate } from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import { Redirect } from "react-router";
 
 const AdminLogin = () => {
+  let pageToRedirect = '';
   const url = `http://176.124.192.232/api/Authorization/login`;
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -20,7 +20,7 @@ const AdminLogin = () => {
     password: "",
   });
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [isOpenError, setIsOpenError] = useState(false);
 
   const handleOpenError = () => {
@@ -55,8 +55,23 @@ const AdminLogin = () => {
       )}&password=${encodeURIComponent(data.password)}`;
       const response = await axios.post(loginUrl, {}, { headers: headers });
       console.log(response);
+      const adminRoleID = localStorage.getItem('adminType');
+      const currentUsersRoleID = response.data.roleid
+      if (adminRoleID === currentUsersRoleID){
+        if (Number(adminRoleID) === 1){
+          return navigate('/admin/eventMenu');
+        }
 
-      handleOpenModal();
+        else if (Number(adminRoleID) === 2){
+          return navigate('/admin/techAdmin');
+        }
+
+      }
+      else {
+        handleOpenError();
+      }
+
+
     } catch (_) {
       handleOpenError();
     }
@@ -103,20 +118,14 @@ const AdminLogin = () => {
           </p>
 
           <div className="my-10">
-            {/*<Button*/}
-            {/*  variant="standard"*/}
-            {/*  className="w-[40px]  bg-nba-wheat  text-[10px] nba-textGray mx-10"*/}
-            {/*  >*/}
-            {/*  Login*/}
-            {/*</Button>*/}
 
-            <button
-              onClick={(e) => submit(e)}
-              type="submit"
-              className="bg-transparent hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-md mx-10 "
-            >
-              Login
-            </button>
+              <button
+                onClick={(e) => submit(e)}
+                className="bg-transparent hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-md mx-10 "
+              >
+                Login
+              </button>
+
 
             <button
               onClick={() => navigate(-1)}
@@ -126,16 +135,19 @@ const AdminLogin = () => {
               Cancel
             </button>
 
-            <Modal
-              setIsOpen={setIsOpen}
-              isOpen={isOpen}
-              onClose={handleCloseModal}
-            />
+
             <ModalError
               setIsOpen={setIsOpenError}
               isOpen={isOpenError}
               onClose={handleOpenError}
             />
+            <Modal
+
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
+              onClose={handleCloseModal}
+            />
+
           </div>
         </div>
       </form>
